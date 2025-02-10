@@ -10,11 +10,15 @@ import Foundation
 struct Recipe: Codable, Identifiable {
     var cuisine: String
     var name: String
-    var photoURLLarge: String
-    var photoURLSmall: String
+    var photoUrlLarge: String
+    var photoUrlSmall: String
     var uuid: String
-    var sourceURL: String?
-    var youtubeURL: String?
+    var sourceUrl: String?
+    var youtubeUrl: String?
     
     var id: String { return uuid }
+}
+
+struct RecipesResponse: Codable {
+    var recipes: [Recipe]
 }

@@ -9,9 +9,13 @@ import Foundation
 
 class RecipesViewModel: ObservableObject {
     
+    init(apiService: RecipeAPIServiceProtocol = RecipeAPIService(urlType: .base)) {
+        self.apiService = apiService
+    }
+    
     @Published var recipes: [Recipe] = []
     
-    lazy var apiService = RecipeAPIService()
+    var apiService: RecipeAPIServiceProtocol
     
     func loadRecipes() {
         Task {
@@ -23,7 +27,7 @@ class RecipesViewModel: ObservableObject {
                 }
                 
             } catch {
-                
+                print("hit error", error)
             }
         }
     }

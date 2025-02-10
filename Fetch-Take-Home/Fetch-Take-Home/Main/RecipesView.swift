@@ -9,24 +9,29 @@ import SwiftUI
 
 struct RecipesView: View {
     
-    @ObservedObject var viewModel: RecipesViewModel = RecipesViewModel()
+    @ObservedObject var viewModel: RecipesViewModel
     
     var body: some View {
-        VStack {
-            ForEach(viewModel.recipes) { recipe in
-                Text(recipe.name)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.recipes) { recipe in
+                    VStack {
+                        CachedImageView(url: recipe.photoUrlLarge)
+                            .frame(height: 200)
+                        Text(recipe.name)
+                            .font(.headline)
+                    }
+                }
             }
+            .padding()
         }
-        .padding()
         .onAppear() {
-            viewModel.recipes = [
-                Recipe(cuisine: "", name: "hello", photoURLLarge: "", photoURLSmall: "", uuid: "d"),
-                Recipe(cuisine: "", name: "helloa", photoURLLarge: "", photoURLSmall: "", uuid: "s")
-            ]
+            viewModel.loadRecipes()
         }
     }
 }
 
 #Preview {
-    RecipesView()
+    RecipeImageCache.preloadImages()
+    return RecipesView(viewModel: RecipesViewModel(apiService: RecipeApiServicePreview()))
 }
