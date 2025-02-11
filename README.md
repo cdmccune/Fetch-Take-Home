@@ -1,6 +1,6 @@
 ### Summary: Include screen shots or a video of your app highlighting its features
 
-https://github.com/user-attachments/assets/ed203104-7853-4bc9-ab81-b1d50e221dea
+https://github.com/user-attachments/assets/5aa58ebb-31c6-42c8-8086-cdba14fa8ef3
 
 The app has a very simple UI and flow. When the view is shown, an api request is made to fetch the recipes. From there, depending on the result it will update the UI. You can switch the url to see empty or malformed data requests in the Fetch_Take_HomeApp.swift file. The view model and RecipeImageCache are both unit tested.
 
