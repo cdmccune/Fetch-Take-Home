@@ -42,8 +42,3 @@ struct CachedImageView: View {
             self.image = downloadedImage
         }
 }
-
-#Preview {
-    EmptyView()
-//    CachedImageView()
-}

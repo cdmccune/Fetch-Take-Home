@@ -31,13 +31,15 @@ struct RecipeAPIService: RecipeAPIServiceProtocol {
         
         let (data, _) = try await URLSession.shared.data(for: request)
         
+        try await Task.sleep(for: .seconds(2))
+        
         let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
         
         return try jsonDecoder.decode(RecipesResponse.self, from: data).recipes
     }
     
-    enum URLType {
+    enum URLType: CaseIterable {
         case base, malformed, empty
     }
 }
@@ -48,7 +50,7 @@ struct RecipeApiServicePreview: RecipeAPIServiceProtocol {
     
     
     func getRecipes() async throws -> [Recipe] {
-        try await Task.sleep(nanoseconds: 1_000_000 * UInt64(delay))
+        try await Task.sleep(nanoseconds: 1_000_000_000 * UInt64(delay))
         
         return [
             Recipe(cuisine: "cuisine 1", 
@@ -60,7 +62,27 @@ struct RecipeApiServicePreview: RecipeAPIServiceProtocol {
                    name: "Recipe 2", 
                    photoUrlLarge: "preview_image_2", 
                    photoUrlSmall: "preview_image_2", 
-                   uuid: "id2")
+                   uuid: "id2"),
+            Recipe(cuisine: "cuisine 1",
+                   name: "Recipe 1",
+                   photoUrlLarge: "preview_image_1",
+                   photoUrlSmall: "preview_image_1",
+                   uuid: "id3"),
+            Recipe(cuisine: "cuisine 2",
+                   name: "Recipe 2",
+                   photoUrlLarge: "preview_image_2",
+                   photoUrlSmall: "preview_image_2",
+                   uuid: "id4"),
+            Recipe(cuisine: "cuisine 1",
+                   name: "Recipe 1",
+                   photoUrlLarge: "preview_image_1",
+                   photoUrlSmall: "preview_image_1",
+                   uuid: "id5"),
+            Recipe(cuisine: "cuisine 2",
+                   name: "Recipe 2",
+                   photoUrlLarge: "preview_image_2",
+                   photoUrlSmall: "preview_image_2",
+                   uuid: "id6")
         ]
     }
 }

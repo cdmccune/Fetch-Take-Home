@@ -11,7 +11,7 @@ import SwiftUI
 struct Fetch_Take_HomeApp: App {
     var body: some Scene {
         WindowGroup {
-            RecipesView(viewModel: RecipesViewModel())
+            RecipesView(viewModel: RecipesViewModel(apiService: RecipeAPIService(urlType: .base)))
         }
     }
 }

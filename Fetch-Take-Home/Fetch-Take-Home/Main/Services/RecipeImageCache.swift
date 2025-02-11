@@ -11,12 +11,12 @@ import SwiftUI
 final class RecipeImageCache {
     static let shared = RecipeImageCache()
     
-    private var cache: NSCache<NSString, UIImage> = {
+    internal var cache: NSCache<NSString, UIImage> = {
         let cache = NSCache<NSString, UIImage>()
         return cache
     }()
     
-    private init() {}
+    internal init() {}
     
     func image(for url: String) -> UIImage? {
         cache.object(forKey: url as NSString)
